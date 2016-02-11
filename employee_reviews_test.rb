@@ -12,7 +12,10 @@ class EmployeeReviewsTest < Minitest::Test
   end
 
   # Create a new department (given its name).
-  
+  def test_can_creat_new_department_with_name
+    assert Department.new("Computer Science")
+  end
+
   # Create a new employee (given his/her name, email address, phone number, and salary).
 
   # Add an employee to a department.
