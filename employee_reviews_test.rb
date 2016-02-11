@@ -82,8 +82,8 @@ class EmployeeReviewsTest < Minitest::Test
 
     f = Employee.new("Clinton Dreisbach", "clinton@email.com", "919-777-7777", 200000)
 
-    e.mark_performance(:satisfactory)
-    assert_equal :satisfactory, e.performance
+    f.mark_performance(:satisfactory)
+    assert_equal :satisfactory, f.performance
   end
 
   # Give a raise to an individual. You decide if this makes sense in dollars or in percent.
@@ -113,6 +113,25 @@ class EmployeeReviewsTest < Minitest::Test
     d.give_raises(total_raise_amount)
 
     assert_equal 450000, d.get_salary_total
+  end
+
+  def test_cannot_give_raises_to_unsatisfactory_employees
+    d = Department.new("Computer Science")
+    mason = Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000)
+    clinton = Employee.new("Clinton Dreisbach", "clinton@email.com", "919-777-7777", 200000)
+
+    d.add_employee(mason)
+    d.add_employee(clinton)
+
+    mason.mark_performance(:unsatisfactory)
+    clinton.mark_performance(:satisfactory)
+
+    total_raise_amount = 50000
+    d.give_raises(total_raise_amount)
+
+    assert_equal 450000, d.get_salary_total
+    assert_equal 200000, mason.salary
+    assert_equal 250000, clinton.salary
   end
 
 end

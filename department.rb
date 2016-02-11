@@ -16,8 +16,9 @@ class Department
   end
 
   def give_raises(amount)
-    each_amount = amount / @employees.length
-    @employees.each {|x| x.give_raise!(amount: each_amount)}
+    raise_eligible = @employees.select {|x| x.performance == :satisfactory || x.performance == nil}
+    each_amount = amount / raise_eligible.length
+    raise_eligible.each {|x| x.give_raise!(amount: each_amount)}
   end
 
 end
