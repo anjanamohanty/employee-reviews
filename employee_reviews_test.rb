@@ -149,14 +149,28 @@ class EmployeeReviewsTest < Minitest::Test
 
     d.add_employee(mason)
     d.add_employee(clinton)
-
     raise_amount = 5000
 
-    d.give_raises(each: 5000) do |employee|
+    d.give_raises(each: raise_amount) do |employee|
       employee.salary < 100000
     end
 
     assert_equal 65000, mason.salary
+    assert_equal 110000, clinton.salary
+  end
+
+  def test_can_give_raise_to_employees_with_specific_name
+    d = Department.new("Computer Science")
+    mason = Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 60000)
+    clinton = Employee.new("Clinton Dreisbach", "clinton@email.com", "919-777-7777", 110000)
+
+    d.add_employee(mason)
+    d.add_employee(clinton)
+    raise_amount = 10000
+
+    d.give_raises(each: raise_amount) {|employee| employee.name == "Mason Matthews"}
+
+    assert_equal 70000, mason.salary
     assert_equal 110000, clinton.salary
   end
 
