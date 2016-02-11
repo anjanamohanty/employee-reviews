@@ -15,10 +15,21 @@ class Department
     @employees.reduce(0) {|total, x| total + x.salary}
   end
 
-  def give_raises(amount)
-    raise_eligible = @employees.select {|x| x.performance == :satisfactory || x.performance == nil}
-    each_amount = amount / raise_eligible.length
-    raise_eligible.each {|x| x.give_raise!(amount: each_amount)}
+  def give_raises(total: nil, each: nil)
+
+    if total
+      raise_eligible = @employees.select {|x| x.performance == :satisfactory || x.performance == nil}
+      each_amount = total / raise_eligible.length
+
+      raise_eligible.each {|x| x.give_raise!(amount: each_amount)}
+    end
+
+    if each
+      raise_eligible = @employees.select {|x| yield(x)}
+
+      raise_eligible.each {|x| x.give_raise!(amount: each)}
+    end
+
   end
 
 end

@@ -11,6 +11,8 @@ class EmployeeReviewsTest < Minitest::Test
     assert Department
   end
 
+  # PART ONE
+
   # Create a new department (given its name).
   def test_can_create_department
     assert Department.new("Computer Science")
@@ -103,18 +105,18 @@ class EmployeeReviewsTest < Minitest::Test
 
   # Give raises to a department's employees. You must pass this method a total dollar amount,
   # and it must distribute the raise amounts reasonably to the department's employees.
-  # Only employees who are performing satisfactorily should get raises.
   def test_can_give_raises_to_departments_employees
     d = Department.new("Computer Science")
     d.add_employee(Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000))
     d.add_employee(Employee.new("Clinton Dreisbach", "clinton@email.com", "919-777-7777", 200000))
 
     total_raise_amount = 50000
-    d.give_raises(total_raise_amount)
+    d.give_raises(total: total_raise_amount)
 
     assert_equal 450000, d.get_salary_total
   end
 
+  # Only employees who are performing satisfactorily should get raises.
   def test_cannot_give_raises_to_unsatisfactory_employees
     d = Department.new("Computer Science")
     mason = Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000)
@@ -127,11 +129,36 @@ class EmployeeReviewsTest < Minitest::Test
     clinton.mark_performance(:satisfactory)
 
     total_raise_amount = 50000
-    d.give_raises(total_raise_amount)
+    d.give_raises(total: total_raise_amount)
 
     assert_equal 450000, d.get_salary_total
     assert_equal 200000, mason.salary
     assert_equal 250000, clinton.salary
   end
+
+  # PART TWO
+
+  # Once your baseline app is complete, modify your method on Departments which gives out raises.
+  # It should now take a block which will specify which employees are eligible for raises.
+  # Prior to this stage, you only allowed "satisfactory" employees to get raises, but now it can be more flexible.
+
+  def test_can_give_raises_to_employees_who_make_less_than_amount
+    d = Department.new("Computer Science")
+    mason = Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 60000)
+    clinton = Employee.new("Clinton Dreisbach", "clinton@email.com", "919-777-7777", 110000)
+
+    d.add_employee(mason)
+    d.add_employee(clinton)
+
+    raise_amount = 5000
+
+    d.give_raises(each: 5000) do |employee|
+      employee.salary < 100000
+    end
+
+    assert_equal 65000, mason.salary
+    assert_equal 110000, clinton.salary
+  end
+
 
 end
