@@ -1,6 +1,6 @@
 class Employee
 
-  attr_reader :name, :performance, :review
+  attr_reader :name, :review
 
   def initialize(name, email, phone_number, salary)
     @name = name
@@ -15,14 +15,15 @@ class Employee
 
   def add_review(review)
     @review = review
+
+    bad_re = /(not|concern|bug|long|bad|improve|issue)\b/i
+    good_re = /(happy|enjoy|productive|asset|effective)\b/i
+
+    @satisfactory = @review.scan(good_re).length > @review.scan(bad_re).length
   end
 
   def get_review
     @review
-  end
-
-  def mark_performance(symbol)
-    @performance = symbol
   end
 
   def give_raise!(percentage: nil, amount: nil)
@@ -31,10 +32,7 @@ class Employee
   end
 
   def is_satisfactory?
-    bad_re = /(not|concern|bug|long|bad|improve|issue)/i
-    good_re = /(happy|enjoy|productive|asset|effective)/i
-
-    @satisfactory = @review.scan(good_re).length > @review.scan(bad_re).length
+    @satisfactory
   end
 
 end

@@ -20,7 +20,7 @@ class Department
   def give_raises(total: nil, each: nil)
 
     if total
-      raise_eligible = @employees.select {|x| x.performance == :satisfactory || x.performance == nil}
+      raise_eligible = @employees.select {|x| x.is_satisfactory? || x.review == nil}
       each_amount = total / raise_eligible.length
 
       raise_eligible.each {|x| x.give_raise!(amount: each_amount)}

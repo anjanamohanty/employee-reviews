@@ -68,22 +68,21 @@ class EmployeeReviewsTest < Minitest::Test
     Hoodie kombucha waistcoat, nesciunt franzen esse velit pitchfork cronut.
     Wolf salvia gluten-free nisi, assumenda ramps four loko butcher raw denim narwhal
     ennui veniam pabst. Adipisicing helvetica reprehenderit, nulla tattooed keytar."
+    e.add_review(review_text)
 
-    assert e.add_review(review_text)
     assert_equal review_text, e.get_review
   end
 
   # Mark whether an employee is performing satisfactorily or not satisfactorily.
   def test_can_mark_employee_performance
     e = Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000)
-
-    e.mark_performance(:unsatisfactory)
-    assert_equal :unsatisfactory, e.performance
-
     f = Employee.new("Clinton Dreisbach", "clinton@email.com", "919-777-7777", 200000)
 
-    f.mark_performance(:satisfactory)
-    assert_equal :satisfactory, f.performance
+    e.add_review(negative_review_two)
+    f.add_review(positive_review_one)
+
+    assert_equal false, e.is_satisfactory?
+    assert_equal true, f.is_satisfactory?
   end
 
   # Give a raise to an individual. You decide if this makes sense in dollars or in percent.
@@ -123,8 +122,8 @@ class EmployeeReviewsTest < Minitest::Test
     d.add_employee(mason)
     d.add_employee(clinton)
 
-    mason.mark_performance(:unsatisfactory)
-    clinton.mark_performance(:satisfactory)
+    mason.add_review(negative_review_two)
+    clinton.add_review(positive_review_one)
 
     total_raise_amount = 50000
     d.give_raises(total: total_raise_amount)
