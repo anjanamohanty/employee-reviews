@@ -74,6 +74,17 @@ class EmployeeReviewsTest < Minitest::Test
   end
 
   # Mark whether an employee is performing satisfactorily or not satisfactorily.
+  def test_can_mark_employee_performance
+    e = Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000)
+
+    e.mark_performance(:unsatisfactory)
+    assert_equal :unsatisfactory, e.performance
+
+    f = Employee.new("Clinton Dreisbach", "clinton@email.com", "919-777-7777", 200000)
+
+    e.mark_performance(:satisfactory)
+    assert_equal :satisfactory, e.performance
+  end
 
   # Give a raise to an individual. You decide if this makes sense in dollars or in percent.
 
