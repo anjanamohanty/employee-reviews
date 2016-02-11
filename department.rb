@@ -15,4 +15,9 @@ class Department
     @employees.reduce(0) {|total, x| total + x.salary}
   end
 
+  def give_raises(amount)
+    each_amount = amount / @employees.length
+    @employees.each {|x| x.give_raise!(amount: each_amount)}
+  end
+
 end

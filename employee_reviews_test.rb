@@ -104,6 +104,15 @@ class EmployeeReviewsTest < Minitest::Test
   # Give raises to a department's employees. You must pass this method a total dollar amount,
   # and it must distribute the raise amounts reasonably to the department's employees.
   # Only employees who are performing satisfactorily should get raises.
+  def test_can_give_raises_to_departments_employees
+    d = Department.new("Computer Science")
+    d.add_employee(Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000))
+    d.add_employee(Employee.new("Clinton Dreisbach", "clinton@email.com", "919-777-7777", 200000))
 
+    total_raise_amount = 50000
+    d.give_raises(total_raise_amount)
+
+    assert_equal 450000, d.get_salary_total
+  end
 
 end
