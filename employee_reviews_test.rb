@@ -48,6 +48,13 @@ class EmployeeReviewsTest < Minitest::Test
   end
 
   # Get a total salary for all employees in a department.
+  def test_can_get_total_salary_for_all_employees_in_department
+    d = Department.new("Computer Science")
+    d.add_employee(Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000))
+    d.add_employee(Employee.new("Clinton Dreisbach", "clinton@email.com", "919-777-7777", 200000))
+
+    assert_equal 400000, d.get_salary_total
+  end
 
   # Add some employee review text (a paragraph or two) to an employee.
 
