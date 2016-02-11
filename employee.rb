@@ -9,4 +9,12 @@ class Employee
     @salary = salary
   end
 
+  def add_review(review)
+    @review = review
+  end
+
+  def get_review
+    @review 
+  end
+
 end

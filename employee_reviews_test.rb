@@ -25,6 +25,7 @@ class EmployeeReviewsTest < Minitest::Test
   def test_can_add_employee_to_department
     d = Department.new("Computer Science")
     d.add_employee(Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000))
+
     assert_equal Array, d.employees.class
     assert_equal Employee, d.employees.first.class
   end
@@ -32,18 +33,21 @@ class EmployeeReviewsTest < Minitest::Test
   # Get an employee's name.
   def test_can_get_employees_name
     e = Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000)
+
     assert_equal "Mason Matthews", e.name
   end
 
   # Get an employee's salary.
   def test_can_get_employees_salary
     e = Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000)
+
     assert_equal 200000, e.salary
   end
 
   # Get a department's name.
   def test_can_get_departments_name
     d = Department.new("Computer Science")
+
     assert_equal "Computer Science", d.name
   end
 
@@ -57,6 +61,17 @@ class EmployeeReviewsTest < Minitest::Test
   end
 
   # Add some employee review text (a paragraph or two) to an employee.
+  def test_can_add_review_text_to_an_employee
+    e = Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000)
+    review_text = "Aliqua fap tousled distillery, scenester reprehenderit poutine
+    brunch mustache vinyl williamsburg listicle yr post-ironic put a bird on it.
+    Hoodie kombucha waistcoat, nesciunt franzen esse velit pitchfork cronut.
+    Wolf salvia gluten-free nisi, assumenda ramps four loko butcher raw denim narwhal
+    ennui veniam pabst. Adipisicing helvetica reprehenderit, nulla tattooed keytar."
+
+    assert e.add_review(review_text)
+    assert_equal review_text, e.get_review
+  end
 
   # Mark whether an employee is performing satisfactorily or not satisfactorily.
 
