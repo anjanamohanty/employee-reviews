@@ -93,6 +93,12 @@ class EmployeeReviewsTest < Minitest::Test
     e.give_raise!(percentage: raise_percent)
 
     assert_equal 220000, e.salary
+
+    f = Employee.new("Clinton Dreisbach", "clinton@email.com", "919-777-7777", 200000)
+    raise_amount = 20000
+    f.give_raise!(amount: raise_amount)
+
+    assert_equal 220000, f.salary
   end
 
   # Give raises to a department's employees. You must pass this method a total dollar amount,
