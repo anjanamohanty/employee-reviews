@@ -25,7 +25,6 @@ class EmployeeReviewsTest < Minitest::Test
   def test_can_add_employee_to_department
     d = Department.new("Computer Science")
     d.add_employee(Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000))
-
     assert_equal Array, d.employees.class
     assert_equal Employee, d.employees.first.class
   end
@@ -33,11 +32,14 @@ class EmployeeReviewsTest < Minitest::Test
   # Get an employee's name.
   def test_can_get_employees_name
     e = Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000)
-
     assert_equal "Mason Matthews", e.name
   end
 
   # Get an employee's salary.
+  def test_can_get_employees_salary
+    e = Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000)
+    assert_equal 200000, e.salary
+  end
 
   # Get a department's name.
 
