@@ -30,4 +30,11 @@ class Employee
     @salary = @salary + amount if amount
   end
 
+  def is_satisfactory?
+    bad_re = /(not|concern|bug|long|bad|improve|issue)/i
+    good_re = /(happy|enjoy|productive|asset|effective)/i
+
+    @satisfactory = @review.scan(good_re).length > @review.scan(bad_re).length
+  end
+
 end

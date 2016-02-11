@@ -1,3 +1,5 @@
+require './employee.rb'
+
 class Department
 
   attr_reader :employees, :name
