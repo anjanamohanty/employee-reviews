@@ -25,8 +25,9 @@ class Employee
     @performance = symbol
   end
 
-  def give_raise!(percentage)
-    @salary = @salary * (1 + percentage)
+  def give_raise!(percentage: nil, amount: nil)
+    @salary = @salary * (1 + percentage) if percentage
+    @salary = @salary + amount if amount
   end
 
 end

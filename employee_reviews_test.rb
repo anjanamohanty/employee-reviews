@@ -90,7 +90,7 @@ class EmployeeReviewsTest < Minitest::Test
   def test_can_give_employee_a_raise
     e = Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000)
     raise_percent = 0.1
-    e.give_raise!(raise_percent)
+    e.give_raise!(percentage: raise_percent)
 
     assert_equal 220000, e.salary
   end
@@ -98,5 +98,6 @@ class EmployeeReviewsTest < Minitest::Test
   # Give raises to a department's employees. You must pass this method a total dollar amount,
   # and it must distribute the raise amounts reasonably to the department's employees.
   # Only employees who are performing satisfactorily should get raises.
+
 
 end
