@@ -17,6 +17,9 @@ class EmployeeReviewsTest < Minitest::Test
   end
 
   # Create a new employee (given his/her name, email address, phone number, and salary).
+  def test_can_create_employee
+    assert Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000)
+  end
 
   # Add an employee to a department.
 
