@@ -42,6 +42,10 @@ class EmployeeReviewsTest < Minitest::Test
   end
 
   # Get a department's name.
+  def test_can_get_departments_name
+    d = Department.new("Computer Science")
+    assert_equal "Computer Science", d.name
+  end
 
   # Get a total salary for all employees in a department.
 
