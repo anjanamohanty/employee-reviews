@@ -19,7 +19,8 @@ class Employee
     bad_re = /(not|concern|bug|long|bad|improve|issue)\b/i
     good_re = /(happy|enjoy|productive|asset|effective)\b/i
 
-    @satisfactory = @review.scan(good_re).length > @review.scan(bad_re).length
+    score = @review.scan(good_re).length.to_f / @review.scan(bad_re).length
+    @satisfactory = (score > 1 ? true : false)
   end
 
   def get_review
