@@ -1,6 +1,6 @@
 class Employee
 
-  attr_reader :name, :review
+  attr_reader :name, :review, :score
 
   def initialize(name, email, phone_number, salary)
     @name = name
@@ -19,8 +19,7 @@ class Employee
     bad_re = /(not|concern|bug|long|bad|improve|issue)\b/i
     good_re = /(happy|enjoy|productive|asset|effective)\b/i
 
-    score = @review.scan(good_re).length.to_f / @review.scan(bad_re).length
-    @satisfactory = (score > 1 ? true : false)
+    @score = @review.scan(good_re).length.to_f / @review.scan(bad_re).length
   end
 
   def get_review
@@ -33,7 +32,8 @@ class Employee
   end
 
   def is_satisfactory?
-    @satisfactory
+    return true if @score == nil
+    @score > 1 ? true : false
   end
 
 end
