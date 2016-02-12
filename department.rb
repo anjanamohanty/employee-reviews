@@ -1,7 +1,7 @@
 require './employee.rb'
 
 class Department
-
+  
   attr_reader :employees, :name
 
   def initialize(name)
@@ -18,20 +18,14 @@ class Department
   end
 
   def give_raises(total: nil, each: nil)
-
     if total
       raise_eligible = @employees.select {|x| x.is_satisfactory? || x.review == nil}
       each_amount = total / raise_eligible.length
-
       raise_eligible.each {|x| x.give_raise!(amount: each_amount)}
-    end
-
-    if each
+    elsif each
       raise_eligible = @employees.select {|x| yield(x)}
-
       raise_eligible.each {|x| x.give_raise!(amount: each)}
     end
-
   end
 
 end
