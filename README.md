@@ -30,15 +30,17 @@ computer_science.add_employee(carl)
 ```
 
 ## Submitting reviews for employees
+> Once a review is given for an employee their rating is automatically set as satisfactory or unsatisfactory, based on the review that was given.
+
 ```ruby
 review_text = "Aliqua fap tousled distillery, scenester reprehenderit poutine
 brunch mustache vinyl williamsburg listicle yr post-ironic put a bird on it.
 Hoodie kombucha waistcoat, nesciunt franzen esse velit pitchfork cronut.
 Wolf salvia gluten-free nisi, assumenda ramps four loko butcher raw denim narwhal
 ennui veniam pabst. Adipisicing helvetica reprehenderit, nulla tattooed keytar."
+
 bob.add_review(review_text)
 ```
-> Once a review is given for an employee their rating is automatically set as satisfactory or unsatisfactory, based on the review that was given
 
 ## Giving raises based on performance
 ```ruby
