@@ -10,6 +10,14 @@ To integrate this in your own program, add ```department.rb``` and ```employee.r
 require './department.rb'
 ```
 
+## Running the tests
+
+If you wish to run the tests for this project, also include ```employee_reviews_test.rb``` in your project directory, and:
+
+```bash
+ruby employee_reviews_test.rb
+```
+
 ## Creating employees and departments
 
 Create a new department:
