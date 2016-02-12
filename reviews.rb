@@ -56,4 +56,49 @@ module Reviews
     to other projects."
   end
 
+  def communication_positive
+    "Keith does a good job always asking for immediate feedback to make sure he is doing his work
+    tasks properly. Frank has an ability to effectively communicate change of plans to employees
+    and keeps them at ease during turbulent periods. Hilda's project team always raves at her
+    ability to encourage open communication among team members. Jim's team has vastly improved
+    their overall performance over the last year due to his positive feedback."
+  end
+
+  def communication_negative
+    "Jack needs to work on his communication skills this next year.
+    Effective communication requires more than just giving information when asked, Jack also
+    needs to be proactive when engaging his team as issues come up. Also, Jack needs to work
+    on the tone of his communication so listeners feel comfortable conversing with him. Terry
+    tends to keep important information from his team members that he needs to share for
+    optimal team performance. Jim needs to work on his ability to receive feedback from his
+    co-workers. Usually Jim tends to attack when given criticism that is constructive in nature."
+  end
+
+  def cooperation_positive
+    "Shirley has done an outstanding job this past year cooperating with
+    her team members during a very difficult company merger. She has demonstrated an eagerness to
+    work with other teams that were created to help with the transition and was an excellent example
+    of how cooperation can produce great results. "
+  end
+
+  def cooperation_negative
+    "Larry is in need of working on his ability to cooperate with fellow
+    co-workers. There have been several situations over the last year where Larry has not cooperated
+    with his co-workers and resulted in a substantial loss in productivity for his work group."
+  end
+
+  def job_knowledge_positive
+    "Sam displays his job knowledge on a consistent basis. George is very
+    consistent in demonstrating his job specific knowledge and technical capacity. Sonny always
+    keeps up with new industry trends and then applies them when she sees they are beneficial to
+    her work. "
+  end
+
+  def job_knowledge_negative
+    "Jan fails to show basic job specific skills for someone that has
+    her seniority with the organization. Jan needs to quickly improve her job knowledge and mastery.
+    Brian consistently does not produce acceptable work and should improve his work knowledge to
+    improve his results. "
+  end
+
 end

@@ -77,7 +77,6 @@ class EmployeeReviewsTest < Minitest::Test
 
   # Mark whether an employee is performing satisfactorily or not satisfactorily.
   def test_can_mark_employee_performance
-
     e = Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000)
     f = Employee.new("Clinton Dreisbach", "clinton@email.com", "919-777-7777", 200000)
 
@@ -118,7 +117,6 @@ class EmployeeReviewsTest < Minitest::Test
 
   # Only employees who are performing satisfactorily should get raises.
   def test_cannot_give_raises_to_unsatisfactory_employees
-
     d = Department.new("Computer Science")
     mason = Employee.new("Mason Matthews", "mason@email.com", "919-555-5555", 200000)
     clinton = Employee.new("Clinton Dreisbach", "clinton@email.com", "919-777-7777", 200000)
@@ -177,7 +175,6 @@ class EmployeeReviewsTest < Minitest::Test
   # is performing satisfactorily. This also means that you will be removing the ability for users
   # to manually mark whether an employee is performing satisfactorily. This will now be determined by code.
   def test_can_mark_performance_correctly_based_on_review
-
     zeke = Employee.new("Zeke Matthews", "zeke@email.com", "919-555-5555", 60000)
     yvonne = Employee.new("Yvonne yvonne", "yvonne@email.com", "919-777-7777", 100000)
     xavier = Employee.new("Xavier", "xavier@email.com", "919-555-5555", 60000)
@@ -192,6 +189,34 @@ class EmployeeReviewsTest < Minitest::Test
     assert_equal yvonne.is_satisfactory?, false
     assert_equal xavier.is_satisfactory?, true
     assert_equal wanda.is_satisfactory?, true
+  end
+
+  # As mentioned above, placing reviews into two buckets is a "Classification" problem. Your task in
+  # Nightmare Mode is to solve a "Regression" problem instead. Assign each employee a SCORE based
+  # on his/her review rather than a yes/no value. After creating this method, modify your departmental
+  # raise function to take this score value into account when giving out raises.
+  # Finally, go out on the Internet and search for at least three examples of good review texts and
+  # three examples of bad review texts. Pass them into your algorithm and see if you agree with its assessment.
+  def test_can_mark_performance_correctly_based_on_reviews_from_the_wild
+    sample = Employee.new("Sample Sampleson", "sample@email.com", "555-555-5555", 40000)
+
+    sample.add_review(communication_positive)
+    assert_equal sample.is_satisfactory?, true
+
+    sample.add_review(communication_negative)
+    assert_equal sample.is_satisfactory?, false
+
+    sample.add_review(cooperation_positive)
+    assert_equal sample.is_satisfactory?, true
+
+    sample.add_review(cooperation_negative)
+    assert_equal sample.is_satisfactory?, false
+
+    sample.add_review(job_knowledge_positive)
+    assert_equal sample.is_satisfactory?, true
+
+    sample.add_review(job_knowledge_negative)
+    assert_equal sample.is_satisfactory?, false
   end
 
 end

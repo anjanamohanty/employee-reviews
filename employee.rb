@@ -16,8 +16,8 @@ class Employee
   def add_review(review)
     @review = review
 
-    bad_re = /(not|concern|bug|long|bad|improve|issue)\b/i
-    good_re = /(happy|enjoy|productive|asset|effective)\b/i
+    bad_re = /(not|concern|bug|long|bad|improve|issue|needs)\b/i
+    good_re = /(happy|excellent|consistent|enjoy|productive|asset|effective|positive)\b/i
 
     @score = @review.scan(good_re).length.to_f / @review.scan(bad_re).length
   end
